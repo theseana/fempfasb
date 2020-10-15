@@ -1,0 +1,56 @@
+CREATE DATABASE fempschool;
+USE fempschool;
+student
+    id          PrimaryKey AUTP_increment
+    name        not null
+    family      not null
+    idNumber    char 10 uniqe
+    birthDate   date
+    className   char 50
+
+CREATE TABLE student(
+id INT AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+family VARCHAR(100) NOT NULL,
+idNumber VARCHAR(10) UNIQUE NOT NULL,
+birthDate DATE NOT NULL,
+className ENUM('Yellow','Red','Green','Orange'),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (id)
+);
+
+
+grade
+    id              PrimaryKey AUTP_increment
+    math            char 3
+    history         char 3
+    physics         char 3
+    chemistry       char 3
+    programming     char 3
+    studentId       Foreign key  id in student
+
+CREATE TABLE grade(
+id INT AUTO_INCREMENT,
+PRIMARY KEY (id),
+math VARCHAR(3) NOT NULL DEFAULT '100',
+history VARCHAR(3) NOT NULL DEFAULT '100',
+physics VARCHAR(3) NOT NULL DEFAULT '100',
+chemistry VARCHAR(3) NOT NULL DEFAULT '100',
+programming VARCHAR(3) NOT NULL DEFAULT '100',
+studentId INT NOT NULL,
+FOREIGN KEY (studentId) REFERENCES student(id),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO student
+(name, family, idNumber, birthDate ,className)
+VALUES
+("fatemeh","nasibipour","1478521457","1990-10-15","Red");
+
+INSERT INTO student
+(name, family, idNumber, birthDate ,className)
+VALUES
+("parham","karami","7854125996","1991-01-07","Yellow"),
+("elahe","mohammadi","3115648520","1990-08-17","Green");

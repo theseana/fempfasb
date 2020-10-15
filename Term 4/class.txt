@@ -1,0 +1,15 @@
+create class Database
+Database
+    init
+        db
+        cursor
+
+create class StudentInsert   Database 
+StudentInsert
+    init 
+        Database init
+        data
+        query
+        execute
+        commit
+        close * 2
