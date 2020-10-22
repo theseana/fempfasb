@@ -7,6 +7,47 @@ import datetime
 import database
 
 
+# nemishe ye kari kard moghe search dige 
+# button search ro nazanim ba enter search beshe?
+
+
+
+def on_double_click(event):
+    item_id = event.widget.focus()
+    item = event.widget.item(item_id)
+    top = Toplevel()
+    Label(top, text="Name").grid(row=0, column=0)
+    name_top = StringVar()
+    name_top.set(item['values'][0])
+    Entry(top, textvariable=name_top).grid(row=0, column=1)
+
+    Label(top, text="Family").grid(row=1, column=0)
+    family_top = StringVar()
+    family_top.set(item['values'][1])
+    Entry(top, textvariable=family_top).grid(row=1, column=1)
+
+    Label(top, text="Code").grid(row=2, column=0)
+    idNumber_top = StringVar()
+    idNumber_top.set(item['values'][2])
+    Entry(top, textvariable=idNumber_top).grid(row=2, column=1)
+
+    Label(top, text="B. Date").grid(row=3, column=0)
+    birthDate_top = StringVar()
+    birthDate_top.set(item['values'][3])
+    Entry(top, textvariable=birthDate_top).grid(row=3, column=1)
+
+    Label(top, text="Color").grid(row=4, column=0)
+    classColor_top = StringVar()
+    classColor_top.set(item['values'][4])
+    Entry(top, textvariable=classColor_top).grid(row=4, column=1)
+
+    Button(top, text="Edit").grid(row=5, column=0)
+    Button(top, text="Delet").grid(row=6, column=0)
+    Button(top, text="Cancel").grid(row=7, column=0)
+    print(item)
+    print(type(item))
+
+
 def to_year(date):
     m, d, y = date.split('/')
     return '20{}-{}-{}'.format(y.zfill(2), m.zfill(2), d.zfill(2))
@@ -25,6 +66,7 @@ def student_insert():
     idN.set('')
     birth.set('')
     color.set('')
+
 
 def search_student():
     data = database.StudentSelect(name_student.get())
@@ -46,6 +88,9 @@ def search_student():
     for name in names:
         tree.insert("", 1, text=name[0], values=(name[1],name[2],name[3], name[4], name[5]))
     tree.grid(row=1, column=0, columnspan=4, sticky=W+E)
+    tree.bind("<Double-Button-1>", on_double_click)
+
+
 root = Tk()
 
 date = datetime.datetime.now()
