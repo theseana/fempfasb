@@ -7,12 +7,18 @@ import datetime
 import database
 
 
-# nemishe ye kari kard moghe search dige 
-# button search ro nazanim ba enter search beshe?
-
-
 
 def on_double_click(event):
+    def dlt():
+        database.StudentUpdate(
+            name_top.get(),
+            family_top.get(),
+            idNumber_top.get(),
+            birthDate_top.get(),
+            classColor_top.get(), 
+            item['text']
+        )
+
     item_id = event.widget.focus()
     item = event.widget.item(item_id)
     top = Toplevel()
@@ -41,11 +47,9 @@ def on_double_click(event):
     classColor_top.set(item['values'][4])
     Entry(top, textvariable=classColor_top).grid(row=4, column=1)
 
-    Button(top, text="Edit").grid(row=5, column=0)
-    Button(top, text="Delet").grid(row=6, column=0)
+    Button(top, text="Edit", command=dlt).grid(row=5, column=0)
+    Button(top, text="Delete", command=dlt).grid(row=6, column=0)
     Button(top, text="Cancel").grid(row=7, column=0)
-    print(item)
-    print(type(item))
 
 
 def to_year(date):

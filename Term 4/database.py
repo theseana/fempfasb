@@ -31,11 +31,13 @@ class StudentInsert(Database):
 
 
 class StudentUpdate(Database):
-    def __init__(self, colName, colValue, id):
+    def __init__(self, name, family, idNumber, birthDate, className, id):
         Database.__init__(self)
         
-        data = (colValue, id)
-        query = "UPDATE student SET " + colName + "=%s WHERE id=%s"
+        data = (name, family, idNumber, birthDate, className, id)
+        query = """UPDATE student
+        SET name=%s, family=%s, idNumber=%s, birthDate=%s, className=%s
+        WHERE id=%s"""
 
         self.cursor.execute(query, data)
         self.db.commit()
