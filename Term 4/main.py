@@ -9,7 +9,7 @@ import database
 
 
 def on_double_click(event):
-    def dlt():
+    def upd():
         database.StudentUpdate(
             name_top.get(),
             family_top.get(),
@@ -18,6 +18,8 @@ def on_double_click(event):
             classColor_top.get(), 
             item['text']
         )
+    def dlt():
+        database.StudentDelete(item['text'])
 
     item_id = event.widget.focus()
     item = event.widget.item(item_id)
@@ -47,7 +49,7 @@ def on_double_click(event):
     classColor_top.set(item['values'][4])
     Entry(top, textvariable=classColor_top).grid(row=4, column=1)
 
-    Button(top, text="Edit", command=dlt).grid(row=5, column=0)
+    Button(top, text="Edit", command=upd).grid(row=5, column=0)
     Button(top, text="Delete", command=dlt).grid(row=6, column=0)
     Button(top, text="Cancel").grid(row=7, column=0)
 
@@ -69,7 +71,7 @@ def student_insert():
     family.set('')
     idN.set('')
     birth.set('')
-    color.set('')
+    color.set('Yellow')
 
 
 def search_student():
@@ -103,14 +105,12 @@ note = Notebook()
 note.grid(row=0, column=0)
 
 s_insert = Frame()
-s_update = Frame()
-s_delete = Frame()
 s_select = Frame()
+g_insert = Frame()
 
 note.add(s_insert, text='Student Insert')
 note.add(s_select, text='Student Search')
-note.add(s_update, text='Student Update')
-note.add(s_delete, text='Student Delete')
+note.add(g_insert, text='Grade Insert')
 
 
 # ######################################### #
@@ -143,7 +143,26 @@ Label(s_select, text="Name").grid(row=0,column=0)
 name_student=StringVar()
 Entry(s_select,textvariable=name_student).grid(row=0, column=1)
 Button(s_select, text="Search", command=search_student).grid(row=0,column=2)
+# ######################################### #
+Label(g_insert, text="Math").grid(row=0, column=0)
+math = StringVar()
+Entry(g_insert, textvariable=math).grid(row=0, column=1)
 
+Label(g_insert, text="History").grid(row=1, column=0)
+history = StringVar()
+Entry(g_insert, textvariable=history).grid(row=1, column=1)
+
+Label(g_insert, text="Physics").grid(row=2, column=0)
+physics = StringVar()
+Entry(g_insert, textvariable=physics).grid(row=2, column=1)
+
+Label(g_insert, text="Chemistry").grid(row=3, column=0)
+chemistry = StringVar()
+Entry(g_insert, textvariable=chemistry).grid(row=3, column=1)
+
+Label(g_insert, text="Programming").grid(row=4, column=0)
+programming = StringVar()
+Entry(g_insert, textvariable=programming).grid(row=4, column=1)
 
 
 root.mainloop()
