@@ -5,7 +5,29 @@ from tkinter.ttk import Notebook, Treeview
 import datetime
 
 import database
+from database import GradeSelect
 
+
+def grades(id):
+    print(GradeSelect(id).result)
+    g = Toplevel()
+    tree = Treeview(g)
+    tree["columns"]=("1","2","3","4","5")
+    tree.column("#0", width=1)
+    tree.column("1")
+    tree.column("2")
+    tree.column("3")
+    tree.column("4")
+    tree.column("5")
+    tree.heading("#0", text="ID")
+    tree.heading("1", text="Math", anchor=W)
+    tree.heading("2", text="History", anchor=W)
+    tree.heading("3", text="Physics", anchor=W)
+    tree.heading("4", text="Chemistry", anchor=W)
+    tree.heading("5", text="Programming", anchor=W)
+    for g in GradeSelect(id).result:
+        tree.insert("", 1, text='', values=(g[1], g[2], g[3], g[4], g[5]))
+    tree.grid(row=1, column=0, columnspan=4, sticky=W+E)
 
 
 def on_double_click(event):
@@ -50,7 +72,7 @@ def on_double_click(event):
     Entry(top, textvariable=classColor_top).grid(row=4, column=1)
 
     Button(top, text="Edit", command=upd).grid(row=5, column=0)
-    Button(top, text="Delete", command=dlt).grid(row=6, column=0)
+    Button(top, text="Grades", command=lambda: grades(item['text'])).grid(row=6, column=0)
     Button(top, text="Cancel").grid(row=7, column=0)
 
 
@@ -58,6 +80,22 @@ def to_year(date):
     m, d, y = date.split('/')
     return '20{}-{}-{}'.format(y.zfill(2), m.zfill(2), d.zfill(2))
 
+
+def grade_insert():
+    database.GradeInsert(
+        math.get(),
+        history.get(),
+        physics.get(),
+        chemistry.get(),
+        programming.get(),
+        std.get(),
+    )
+    math.set('')
+    history.set('')
+    physics.set('')
+    chemistry.set('')
+    programming.set('')
+    std.set('')
 
 def student_insert():
     database.StudentInsert(
@@ -164,5 +202,10 @@ Label(g_insert, text="Programming").grid(row=4, column=0)
 programming = StringVar()
 Entry(g_insert, textvariable=programming).grid(row=4, column=1)
 
+Label(g_insert, text="Student ID").grid(row=5, column=0)
+std = StringVar()
+Entry(g_insert, textvariable=std).grid(row=5, column=1)
+
+Button(g_insert, text='Create', command=grade_insert).grid(row=6, column=1)
 
 root.mainloop()

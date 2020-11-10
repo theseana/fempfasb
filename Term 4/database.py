@@ -67,9 +67,9 @@ class StudentSelect(Database):
         query = "SELECT * FROM student"
 
         self.cursor.execute(query)
-        result = self.cursor.fetchall()
+        self.result = self.cursor.fetchall()
         self.row_numbers = []
-        for row in result:
+        for row in self.result:
             if row[1] in full_name or row[2] in full_name:
                 self.row_numbers.append(row)
 
@@ -79,4 +79,33 @@ class StudentSelect(Database):
     def get(self):
         return  self.row_numbers
 
-# StudentInsert('fatemeh', 'nasibipour', '1478521456','2004-01-01', 'Red')
+
+class GradeInsert(Database):
+    def __init__(self, math, history, physics, chemistry, programming, id):
+        Database.__init__(self)
+        
+        data = (math, history, physics, chemistry, programming, id)
+        query = """INSERT INTO grade
+        (math, history, physics, chemistry, programming, studentId)
+        VALUES
+        (%s, %s, %s, %s, %s, %s)"""
+
+        self.cursor.execute(query, data)
+        self.db.commit()
+
+        self.cursor.close()
+        self.db.close()
+
+
+class GradeSelect(Database):
+    def __init__(self, id):
+        Database.__init__(self)
+
+        query = "SELECT * FROM grade WHERE studentId=%s" % id
+
+        self.cursor.execute(query)
+        self.result = self.cursor.fetchall()
+
+        self.cursor.close()
+        self.db.close()
+print(GradeSelect(8).result)
