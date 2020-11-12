@@ -108,4 +108,3 @@ class GradeSelect(Database):
 
         self.cursor.close()
         self.db.close()
-print(GradeSelect(8).result)
