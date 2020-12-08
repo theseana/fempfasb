@@ -1,28 +1,63 @@
-h1{
-    background-color: #9575cd;
-    height: 100px;
-    width: 98%;
-    margin-left: 1%;
+header{
     text-align: center;
-    font-size: 50px;
-    padding-top: 3%;
+    font-size: 40px;
+    background-color: thistle;
+    padding: 20px;
 }
-div{
-    background-color: #512da8;
-    width: 98%;
-    margin-left: 1%;
+nav{
+    background-color: rgb(233, 233, 233);
+    text-align: left;
 }
-a{
-    color: yellow;
-    font-weight: bold;
-    margin-left: 20%;
+
+.nav-link{
+    padding-right: 40px;
+    padding-left: 40px;
+    text-decoration: none;
+    color: black;
 }
-.left{
-    width: 70%;
+article{
+    float: left;
+    background-color: thistle;
+    width: 75%;
+    height: 500px;
 }
-.right{
-    width: 20%;
+
+aside{
+    float: right;
+    background-color: rgb(97, 71, 97);
+    width: 25%;
+    height: 500px;
+
 }
-title{
-    display: inline;
+hr{
+    width: 90%;
+}
+.title, .description, small{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.description{
+    text-align: justify;
+}
+.aside-title{
+    padding-left: 10px;
+    color: white;
+}
+.aside-img{
+    padding-left: 55px;
+}
+.aside-text{
+    text-align: justify;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+footer{
+    color: rgb(57, 39, 78);
+    text-align: center;
+    padding-top: 100px;
+}
+img{
+    padding-left: 10px;
+    padding-right: 10px;
 }
