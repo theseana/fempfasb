@@ -1,0 +1,28 @@
+h1{
+    background-color: #9575cd;
+    height: 100px;
+    width: 98%;
+    margin-left: 1%;
+    text-align: center;
+    font-size: 50px;
+    padding-top: 3%;
+}
+div{
+    background-color: #512da8;
+    width: 98%;
+    margin-left: 1%;
+}
+a{
+    color: yellow;
+    font-weight: bold;
+    margin-left: 20%;
+}
+.left{
+    width: 70%;
+}
+.right{
+    width: 20%;
+}
+title{
+    display: inline;
+}

@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "FempFasb";
+    src: url('../fonts/Sofia/Sofia-Regular.ttf') format("truetype");
+}
+h1{
+    font-family: "FempFasb";
+}
