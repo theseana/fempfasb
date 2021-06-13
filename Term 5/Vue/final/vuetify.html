@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="bootstrap5/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body class="bg-dark">
+  <div id="app">
+    <v-app>
+      <v-content>
+        <!-- <div class="container">
+          <div class="text-danger display-3">Registration</div>
+          <div class="row mt-5">
+              <div class="col-2">
+                  <label for="first_name" class="col-form-label text-danger">First Name</label>
+              </div>
+              <div class="col-10">
+                  <input v-model="f_name" type="text" id="first_name" class="form-control" >
+              </div>
+
+              <div class="col-2">
+                  <label for="last_name" class="col-form-label text-danger">Last Name</label>
+              </div>
+              <div class="col-10">
+                  <input v-model="l_name" type="text" id="last_name" class="form-control" >
+              </div>
+              
+              <div class="col-2">
+                  <label for="job" class="col-form-label text-danger">Job Title</label>
+              </div>
+              <div class="col-10">
+                  <input v-model="job" type="text" id="job" class="form-control" >
+              </div>
+
+              <div class="col-2">
+                  <label for="hobbies" class="col-form-label text-danger">Hobbies</label>
+              </div>
+              <div class="col-10">
+                  <textarea v-model='des' id="hobbies" class="form-control"></textarea>
+              </div> -->
+              <v-btn color="warning">asdasd</v-btn>
+
+              <!-- <button @click="create" class="btn btn-success mt-3">Register</button> -->
+          <!-- </div>
+          <hr class="text-warning">
+          <p class="text-primary display-3">{{ count }} Persons have been registered!</p>
+          <div class="row">
+            <div class="row row-cols-1 row-cols-md-3 g-4">    
+              <div class="col" v-for="(person, index) in persons">
+                <div class="card h-100">
+                  <img src="image/profile.jpg"  class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title mb-0">{{ full(index) }}</h5>
+                    <small class="text-muted">{{ person.job }}</small>
+                    <p class="card-text">{{ person.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        
+      </v-content>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.js"></script>
+  <script src="bootstrap5/bootstrap.bundle.min.js"></script>
+  <!-- <script src="vue.js"></script> -->
+  <script>
+    new Vue({ 
+      el: '#app',
+      data: {
+        f_name: '',
+        l_name: '',
+        job: '',
+        des: '',
+        persons:[
+          {first_name:'Sepehr', last_name:'Saei', job: 'Business Man', description:'Sepehr is a cool guy who always want to play games!'}
+        ]
+      },
+      computed:{
+        count: function(){
+          return this.persons.length
+        }
+      },
+      methods: {
+        full: function(index){
+          person = this.persons[index];
+          return person.first_name+" "+person.last_name;
+        },
+        create: function(){
+          if(this.first_name != '' && this.last_name  != '' && this.job != '' && this.des != '' ){
+            person = {
+                first_name: this.f_name,
+                last_name:this.l_name,
+                job: this.job,
+                description: this.des
+            }
+            this.persons.push(person)
+            this.f_name= ''
+            this.l_name= ''
+            this.job= ''
+            this.des= ''
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

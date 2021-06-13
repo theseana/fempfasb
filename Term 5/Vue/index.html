@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body class="bg-dark">
+    <div class="app">
+
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col text-danger display-3">My TODO List({{ countTODO }})</div>
+        </div>
+
+        <div class="row" v-for="(todo, index) in todos">
+          <div class="col">
+            <div class="list-group">
+              <a @click="removeTODO(index)" href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                {{ todo.title }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 mt-3">
+          <label for="a" class="form-label text-warning">New TODO({{ countNewTODO }}/100)</label>
+          <input type="text" v-model="newTODO" class="form-control" id="a" placeholder="Water Bill">
+          <div class="d-grid gap-2">
+            <button class="btn btn-warning" @click="addNewTODO">Insert</button>
+          </div>
+        </div>
+        
+        <div class="row">
+          <p class="text-danger">Done List({{ countDONE }})</p>
+          <div class="d-grid gap-2">
+            <button class="btn btn-danger" v-for="d in done">
+              {{ d.title }}
+            </button>
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+              newTODO: '',
+              todos: [
+                {title: 'Power Bill'},
+                {title: 'Barber'},
+                {title: 'Grocery'},
+              ],
+              done: []
+            },            
+            watch: {
+              newTODO: function(nval, oval){
+                if (nval.length > 100){
+                  this.newTODO = oval;
+                }
+              }
+            },
+            computed:{
+              countTODO: function(){
+                return this.todos.length
+              },
+              countDONE: function(){
+                return this.done.length
+              },
+              countNewTODO: function(){
+                return this.newTODO.length
+              }
+            },
+            methods: {
+              addNewTODO: function(){
+                if (this.newTODO != ''){
+                  this.todos.push({title: this.newTODO});
+                  this.newTODO = '';
+                }
+              }, 
+              removeTODO: function(index){
+                this.done.push(this.todos[index])
+                this.todos.splice(index,1);
+              }, 
+            }
+        })
+    </script>
+  </body>
+</html>

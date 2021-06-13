@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap5/bootstrap.min.css">
+    <title>Document</title>
+
+</head>
+<body class="bg-dark">
+    <div class="app">
+        <div class="container">
+            <p class="text-dark">registration</p>
+            <div class="row  mt-4">
+<!-- fullname -->
+                <div class="col-2">
+                    <label for="FN1" class="me-3 text-warning">FullName</label>
+                </div>
+                <div class="col-10">    
+                    <input type="text" v-model="FirstNameinput" class="form-control" id="FN1" placeholder="fullname">
+                </div>
+                </div>  
+            <div class="row">                                                        
+                <div class="col-2">
+                    <label for="LN1" class="me-3 text-warning">FullName</label>
+                </div>
+                <div class="col-10">    
+                    <input type="text" v-model="LastNameinput" class="form-control" id="LN1" placeholder="fullname">
+                </div>
+            </div>
+<!-- jobtitle -->
+            <div class="row">
+                <div class="col-2">
+                    <label for="FN2" class="me-3 text-warning">Job Title</label>
+                </div>
+                <div class="col-10">    
+                    <input type="text" v-model="Jobtitleinput" class="form-control" id="FN2" placeholder="Jobtitle">
+                </div>
+            </div>
+<!-- hobbies -->
+            <div class="row">
+                <div class="col-2">
+                    <label for="FN3" class="me-3 text-warning">Description</label>
+                </div>
+                <div class="col-10">    
+                    <textarea v-model="Descriptioninput" class="form-control" id="FN3" placeholder="description"></textarea>
+                </div>
+            </div>
+            <div class="row"><button @click="create" class="btn btn-warning">submit</button></div>    
+            <div class="row">
+                <div class="col" v-for="i in info">
+                    <div class="card h-100">
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ info.firstname }} {{ info.lastname }}</h5>
+                        <p class="card-text">Job Title:{{ info.job }}</p>
+                        <p class="card-text">description:{{ info.description }}</p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bootstrap5/bootstrap.bundle.min.js"></script>
+    <script src="vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                FirstNameinput: "",
+                LastNameinput: "",
+                Jobtitleinput: "",
+                Descriptioninput: "",
+                info:[
+                    {firstname:"foad",lastname:"khomami" ,job:"arcgitect",description:"Ta-das"},
+                    {firstname:"foad",lastname:"khomami" ,job:"arcgitect",description:"Ta-das"}
+                ]
+            },
+            methods: {
+                create: function(){
+                    if(this.FirstNameinput != '',this.LastNameinput != '',this.Jobtitleinput != '',this.Descriptioninput != ''){
+                        v = {
+                            firstname: this.FirstNameinput,
+                            lastname: this.LastNameinput,
+                            job: this.Jobtitleinput,
+                            description: this.Descriptioninput
+                        }
+                        this.info.push(v)
+                        this.FirstNameinput = ''
+                        this.LastNameinput = ''
+                        this.Jobtitleinput = ''
+                        this.Descriptioninput = ''
+                    }
+                }
+            }    
+        })
+    </script>
+</body>
+</html>

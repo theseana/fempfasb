@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" class="container bg-dark text-white">
+        <p>My message is: {{ msg }}</p>
+        <p>Reversed Message: {{ rmsg }}</p>
+        You clicked me: <button class="btn btn-danger">{{ counter }}</button> times.<br>
+        <button class="btn btn-primary" @click="greet">PLS CLICK ME!</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Guys!',
+                counter: 0    
+            },
+            computed: {
+                rmsg: function() {
+                    return this.msg.split('').reverse().join('')
+                }
+            },
+            methods: {
+                greet: function(event){
+                    alert('Oh Oh BUTTON PRESSED!!!')
+                    this.counter ++
+                }
+            }
+        })
+    </script>
+</body>
+</html>

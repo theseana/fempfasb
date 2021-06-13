@@ -1,8 +1,8 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <Card name='Elahe Mohammadi' jobTitle="Industrial Engineer" />
-  <Card name='Sepehr Saied' jobTitle="Security EXpert" />
-  <Card name='Foads' jobTitle="Space Engineer" />
+  <img alt="Vue logo" src="./assets/logo.png">
+  <Card name='Elahe Mohammadi' jobTitle="Industrial Engineer"  :isPrivate="true"/>
+  <Card name='Sepehr Saie' jobTitle="Security EXpert" :isPrivate="false"/>
+  <Card name='Foads' jobTitle="Space Engineer" :isPrivate="true"/>
 </template>
 
 <script>
